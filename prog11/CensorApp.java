@@ -1,0 +1,372 @@
+/**
+ * CensorApp 
+ * program 11
+ * 
+ * James English
+ * 11/13
+ */
+
+
+import java.io.*;
+import java.util.*;
+
+
+public class CensorApp
+{
+// --------------------instance variables-------------------------------
+ private Scanner kb, sc;
+ private Vector<String> delete, toBeDeleted;
+ private int starNum;
+ private Boolean didShow;
+//--------------------constuctor----------------------------------------
+
+  public CensorApp()
+  {
+    delete = new Vector<String>();
+    toBeDeleted = new Vector<String>();
+    kb = new Scanner(System.in);
+    
+     String message = "\n********************************\n";
+      message +=         "          Welcome to  \n";
+      message +=         "           Acme Censormatic\n";
+      message +=         "********************************";
+      
+      System.out.println( message );
+      
+    loadFile();
+  }
+
+  
+//--------------------------get next line -------------------------------
+     private Scanner getNextLine(  )
+   {
+      // get the next line from kb
+     String str;
+     str = kb.nextLine();
+      
+      
+      //Create a Scanner from the line in order to test it
+      Scanner scan = new Scanner( str );
+      
+      
+      // write a loop: while scan.hasNext() is false
+      while (scan.hasNext() == false )
+      {
+        str = kb.nextLine();
+        scan = new Scanner ( str );
+        // read the next line from kb and create a new Scanner from line
+        
+      }
+      
+      // Echo print the line to System.out
+     //System.out.println( str );
+      
+      
+      // return the Scanner
+      return scan;
+   }
+  
+//-------------------user input load filename----------------------------
+     public void loadFile()
+     {
+       char ch = 'q';
+       
+       do
+       {
+         // prompt the user to enter a command
+         System.out.println("Enter Command>>");
+         
+         // get the next non-blank line
+         Scanner scanner = getNextLine();
+         
+         
+         
+         
+         // get the command from the line Scanner(first token)
+         String cmd = scanner.next();
+         
+         
+         // get ch,  the first character of the command (in lowercase)
+         String file = null;
+         if(scanner.hasNext())
+         {  
+           file = scanner.next();
+         }
+         
+         ch = cmd.toLowerCase().charAt(0);
+         
+         // print out the command character
+         System.out.println( "You typed: " + ch );
+         
+     
+         
+//         System.out.println("Your Entered: " + file);
+         
+         if ( ch == 'l') 
+         {
+           if ( file !=null)
+           {
+               System.out.println("Your Entered File : " + file);
+             
+             try
+             {
+               load(file.trim());
+               System.out.println("Load Sucessful" + cmd );
+                System.out.println("Words to be deleted: " + delete);
+             }
+             catch(FileNotFoundException e)
+             {
+               //print a nice message that it failed
+               
+               System.out.println("File not Found");
+             }
+             
+            
+             
+           }
+           
+           else
+           {
+             System.out.println("Error file does not exists" );
+             
+           }
+           
+           
+         }
+         else  if ( ch == 'o')
+         {
+           if (file !=null)
+           {
+              System.out.println("Your Entered: " + file);
+              
+             try
+             {
+               open(file.trim());
+               System.out.println("File Open Successful: " + file);
+             }
+             catch(FileNotFoundException e)
+             {
+               //print a nice message that it failed
+               
+               System.out.println("File not Found");
+             }
+           }
+           else 
+           {
+             System.out.println("Error file does not exists");
+             
+           }
+         }
+         
+         else if ( ch == 'c')
+         {
+           
+           if ( file!=null)
+           {
+              System.out.println("Your Entered: " + file);
+              
+             try
+             {   
+               
+               censor(file.trim());
+               System.out.println("File save Sucessful: " + file);
+               
+              }
+
+             catch(FileNotFoundException e )
+             {
+               System.out.println("File save not Sucessful: ");
+                 
+             }
+             
+             
+             }
+           else 
+           {
+             System.out.println("Error file does not exists");
+             
+           }
+           }
+         else if ( ch == 's')
+         {
+           if ( file!=null)
+           {
+             System.out.println("Your Entered: " + file);
+             try
+             {
+            
+               System.out.println("File Open Sucessful content is: ");
+               show(file.trim());
+     
+             }
+             catch(FileNotFoundException e )
+             {
+               System.out.println("File Open Not Sucessful");
+             }
+           }
+           else 
+           {
+             System.out.println("Error file does not exists");
+           }
+         }
+         else if ( ch == 'h')
+         {
+            System.out.println( 
+             "Your Entered: Help Here are the useful commands" );
+           System.out.println("l = load");
+           System.out.println("o = open");
+           System.out.println("c = saves");
+           System.out.println("q = quit");
+         
+         }
+         
+         else if ( ch != 'h' || ch != 'l' || ch != 'o' || ch != 'c' || ch != 'q')
+         {
+           System.out.println("Command Not Valid, type H for help");
+         }
+         
+       }
+       
+       
+       
+       while( ch != 'q');
+       
+       
+       
+       // Print out a goodbye message
+       System.out.println( "\n   ***Goodbye*** \n" );
+     }
+//------------------------load method for l input-------------------------
+    private void load( String filename ) throws FileNotFoundException
+    {
+        System.out.println("Filename is: " + filename);
+      
+      File inputFile = new File(filename);
+      Scanner s = new Scanner(inputFile);
+      
+      String str;
+      while( s.hasNext() )
+      {
+        str = s.next();
+        str = str.toLowerCase();
+        
+        
+      
+        
+        if ( !delete.contains(str))         
+        {
+          delete.add(str);
+        }
+      }
+    }
+
+//--------------------open method for o input----------------------------    
+    private void open( String filename) throws FileNotFoundException
+    {
+      File inputFile = new File(filename);
+      Scanner scan = new Scanner(inputFile);
+      
+     while ( scan.hasNext())
+     {
+       
+       toBeDeleted.add(scan.next());
+     }
+      
+     
+     
+    }
+    
+    
+//--------------------DoC method for c input----------------------------    
+    private void censor( String filename) throws FileNotFoundException
+    {
+      File outPut = new File(filename);
+      PrintStream p = new PrintStream(outPut);
+//      p.print("hello");
+
+       for ( int i = 0; i < toBeDeleted.size(); i++)
+       {
+       String str = toBeDeleted.get(i);
+       
+         
+        for ( int j = 0; j < delete.size(); j++)
+        { 
+          
+          String strin = starNumber(str);
+          
+//          System.out.println(str);
+          
+          str = str.replace(delete.get(j), strin );
+          
+        
+        
+        }
+        // write str to a file 
+        p.print(str + " " );
+//        System.out.println("HERE" +  str);
+       } 
+        
+
+
+      
+    }
+    
+    
+           
+
+//--------------------show method for s input----------------------------    
+    private void show( String filename) throws FileNotFoundException
+    {
+      File inputFile = new File(filename);
+      Scanner scan = new Scanner(inputFile);
+      while (scan.hasNextLine())
+      { 
+        
+       String word = scan.nextLine();
+       System.out.println(word);
+         
+        
+      }
+      
+      didShow = true;
+
+
+      
+      
+    }
+           
+//------------------------get star number----------------------------
+    public String starNumber(String s )
+    {
+      
+
+      
+      String st = "";
+      
+      starNum = s.length();
+      
+      for  (int i = 0; st.length() < starNum; i++ )
+      {
+      
+        st = st + "*";
+      
+      
+      }
+        
+    
+      
+        return st;
+      
+    
+    }
+    
+//--------------------------main ----------------------------------------  
+  
+  public static void main( String[] args )
+   {
+      CensorApp app;
+      
+      app = new CensorApp();
+   }
+
+}

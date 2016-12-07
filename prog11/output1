@@ -1,0 +1,55 @@
+
+********************************
+          Welcome to the 
+         Acme Censormatic
+********************************
+
+Enter Command >>
+You Entered: l birds-delete.txt
+Load successful: birds-delete.txt
+Words to be deleted:[birds, birds, birds, feather, feather, flock, pigs, rats]
+
+Enter Command >>
+You Entered: o birds.txt
+File Open Successful: birds.txt
+
+Enter Command >>
+You Entered: c birds-out.txt
+File save Successful:birds-out.txt
+
+Enter Command >>
+You Entered: s birds-delete.txt
+File Open Successful: birds-delete.txt contents:
+------
+birds Birds BIRDS
+feather Feather
+flock 
+pigs 
+rats 
+------
+
+Enter Command >>
+You Entered: s birds.txt
+File Open Successful: birds.txt contents:
+------
+birds of a feather flock together,
+and so will pigs and swine;
+rats and mice will have their choice,
+and so will I have mine.
+------
+
+Enter Command >>
+You Entered: s birds-out.txt
+File Open Successful: birds-out.txt contents:
+------
+***** of a ******* ***** together,
+and so will **** and swine;
+**** and mice will have their choice,
+and so will I have mine.
+------
+
+Enter Command >>
+You Entered: q
+
+   ***Goodbye*** 
+

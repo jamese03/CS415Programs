@@ -1,0 +1,6 @@
+run
+load bogus.txt
+open bogus.txt
+c bogus.txt
+s bogus.txt
+q

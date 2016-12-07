@@ -1,0 +1,7 @@
+l birds-delete.txt
+o birds.txt
+c birds-out.txt
+s birds-delete.txt
+s birds.txt
+s birds-out.txt
+q

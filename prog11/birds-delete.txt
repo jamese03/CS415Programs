@@ -1,0 +1,6 @@
+birds Birds BIRDS
+feather Feather
+flock 
+pigs 
+rats 
+

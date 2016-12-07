@@ -1,0 +1,31 @@
+/* Slingshot 
+ * James English jpj68
+ * 10/30
+ * 
+ * */
+
+
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.util.*;
+import java.awt.Point;
+import java.awt.Color;
+
+
+public class Ashes extends Rectangle
+{
+  Rectangle r1;
+  Rectangle r2;
+  Rectangle r3;
+//--------------------------constructor---------------------------------
+  public Ashes( int x, int y )
+  {
+    r1 = new Rectangle( x, y)
+    r1.setFrameColor(Color.RED);
+    r1.setFillColor(Color.ORANGE);
+  
+  }
+
+
+
+}

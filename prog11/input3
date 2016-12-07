@@ -1,0 +1,7 @@
+load rumple-delete.txt
+open rumple.txt
+c rumple-out.txt
+save rumple-delete.txt
+s rumple.txt
+s rumple-out.txt
+q

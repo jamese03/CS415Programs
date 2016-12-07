@@ -1,0 +1,177 @@
+/* James English
+ * 
+ * jpj68 
+ * program 10
+ * */
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.util.*;
+import java.awt.Point;
+import java.awt.Color;
+
+public class Program10 implements KeyListener
+{
+//--------------------instance variables-------------------------------
+  private  TextBox tb;
+  private Vector <String> answers;
+  private Vector <String> hints;
+  private Vector<String> combined;
+  private Vector<String> words;
+  private String current; 
+  private int wordIndex;
+  private Random randomNum;
+  private int r, n;
+  
+  
+//---------------constructor---------------------------------------------
+  public Program10( int x, int y )
+  {
+    tb = new TextBox( 50, 50 );
+    
+    combined =  FileUtilities.getStrings( );
+    
+    answers = new Vector<String>();
+    hints = new Vector<String>();
+    
+    for( int i = 0; i < combined.size(); i++)
+    {
+      
+      String s = combined.get(i);
+      int idx = s.indexOf(":");
+      answers.add(s.substring(0, idx));
+      hints.add(s.substring(idx));
+      
+    }
+    current = answers.get(wordIndex);
+    tb.setText("Scrambled Word: " + scrambleWord(current));
+    tb.setSize(300, 100 );
+    
+    
+  }
+  
+//-----------------------scramble method ---------------------------------
+  public String scrambleWord(String s)
+  {
+    randomNum = new Random();
+    
+   
+    String str = current;
+    String scram = "";
+    
+    while ( current.length() > 0 )
+    {
+      int n = current.length();
+      r = randomNum.nextInt(n);
+      
+      String st = current.substring(r, r +1 );
+      
+      current = deleteString(current, r);
+     
+      scram = scram + st;
+      
+    }
+    
+
+  
+    return scram;
+  }
+  
+//-------------string delete method-------------------------------------
+  public String deleteString(String str, int i )
+  {
+    
+    String s = str.substring(0,i);
+    String st = str.substring(i+1);
+    
+    String deletedString = s + st;
+    
+    return deletedString;
+  
+  }
+
+//---------------------key pressed method-------------------------------
+   public void keyPressed(KeyEvent e) 
+   {
+    int code = e.getKeyCode( ) , dx = 0 , dy = 0;
+    System.out.println("KEY PRESSED: " + code );
+      
+
+   }
+   
+//--------------------------key released--------------------------
+   public void keyReleased(KeyEvent e) 
+   {
+      System.out.println("KEY RELEASED: " + e.getKeyCode( ) );
+     
+     
+   }
+   
+//-----------------------key typed method------------------------------
+   public void keyTyped( KeyEvent e ) 
+   {
+      // get key typed as String
+      String s  =  Character.toString( e.getKeyChar( ));
+      //get keyTyped as char
+      char c = e.getKeyChar( );
+      System.out.println( s );
+      
+      // Add a selection structure based on the value of the entered 
+      //  String character (or the char value it is your choice).
+      //
+      //  If the character is a space " " then clear the collection 
+      // "words"
+      // 
+      // If the character is a return "\n" then translate the current 
+      //  word, add the translation 
+      //  to the collection and set the current word to an empty string
+      //
+      // Otherwise add the character to the current word.
+      ////////////////////////////////////////////////////////////////
+//      if ( s.equals (" ")) 
+//      {
+//        current = "";
+//      }
+//      else if (s.equals("\n")) 
+//      {
+//        words.add(StringUtilities.translate( current ));
+//       
+//        current = "";
+//      }
+//        else 
+//      {
+//        current = current + s;
+//      
+//      }
+      
+      
+
+      
+      ///////////////////////////////////////////////////////////
+      //  this will refresh the display 
+      //  after you have made changes
+      refreshDisplay( );
+   }
+   
+//------------------------------refresh display------------------------
+   private void refreshDisplay()
+   {
+//      String output = "Current Word: " + current + "\n\nTranslated List:\n";
+//      
+//      if( words != null)
+//         for( String s: words )  
+//            output += ("               " + s + "\n");
+//
+//      tb.setText( output );
+//      tb.setWidth(250);
+   }   
+//------------------------main------------------------------------------
+  public static void main( String args[ ] )
+   {
+      Frame f = new Frame( );
+      
+      Program10  s = new Program10( 90, 400); 
+   }
+
+
+
+}

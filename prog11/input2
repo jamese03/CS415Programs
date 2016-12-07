@@ -1,0 +1,7 @@
+load baa-delete.txt
+open baa.txt
+c baa-out.txt
+save baa-delete.txt
+s baa.txt
+s baa-out.txt
+q

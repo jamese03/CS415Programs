@@ -1,0 +1,7 @@
+baa sheep wool
+ bags 
+ master
+ dame
+ boy
+. 
+,

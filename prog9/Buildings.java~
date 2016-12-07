@@ -1,0 +1,81 @@
+/* Building 
+ * James English jpj68
+ * 10/30
+ * 
+ * */
+import wheelsunh.users.*;
+import java.awt.event.*;
+import java.util.*;
+import java.awt.Point;
+import java.awt.Color;
+
+public class Buildings extends ShapeGroup
+{
+//-------------instance variables---------------------------------------
+  private Vector<Rectangle> buildings;
+  private Rectangle building;
+  private Random randomNum;
+  private int r;
+
+//---------------constructor-------------------------------------------- 
+  public Buildings()
+  {
+    randomNum = new Random();
+    buildings = new Vector<Rectangle>();
+   
+    for(int i= 0; i< 10; i++)
+    {
+      r = randomNum.nextInt(115) + 15;
+      building = new Rectangle();
+      building.setSize(25, r );
+      buildings.add(building);
+      building.setLocation( 290 + (i*30), 500 - r);
+      building.setColor( Color.BLACK );
+      building.setFrameColor(Color.GRAY );
+      building.setFrameThickness( 3 );
+      add(building);
+    }
+   
+  
+  
+  }
+//-----------------------get height-------------------------------------
+  public int getHeight()
+  {
+    return building.getHeight();
+
+  }
+//------------------------get width-------------------------------------
+  public int getWidth()
+  {
+    return building.getWidth();
+  
+  }
+//-------------------------get X location-------------------------------
+  public int getXLocation()
+  {
+    return building.getXLocation();
+  }
+//-----------------------get Y location-----------------------------------
+  public int getYLocation()
+  {
+    return building.getYLocation();  
+  }
+  
+//--------------------------getLocation---------------------------------
+  public Point getLocation()
+  {
+    return building.getLocation();
+  
+  }
+
+//-------------------------main method----------------------------------  
+  public static void main( String args[ ] )
+   {
+      Frame f = new Frame( );
+      Buildings  s = new Buildings(  ); 
+   }
+
+
+
+}

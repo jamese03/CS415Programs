@@ -1,0 +1,31 @@
+
+********************************
+          Welcome to the 
+         Acme Censormatic
+********************************
+
+Enter Command >>
+You Entered: run
+invalid command; type 'h' to see commands
+
+Enter Command >>
+You Entered: load bogus.txt
+error: bogus.txt (No such file or directory)
+
+Enter Command >>
+You Entered: open bogus.txt
+Input File Open Error: bogus.txt (No such file or directory)
+
+Enter Command >>
+You Entered: c bogus.txt
+No delete word list
+
+Enter Command >>
+You Entered: s bogus.txt
+Input File Open Error: bogus.txt (No such file or directory)
+
+Enter Command >>
+You Entered: q
+
+   ***Goodbye*** 
+
